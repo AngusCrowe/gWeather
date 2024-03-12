@@ -29,6 +29,10 @@ def results():
     else:
         url = "http://api.openweathermap.org/data/2.5/weather?q=" + form_city + "&APPID=" + api_key
 
+
+# use this link: https://api.openweathermap.org/data/2.5/forecast?lat=30.0444&lon=31.2357&appid=61e2ac5c5dec09d272ffdbfbfe7e27d2
+
+
     print(url)
 
     response = requests.get(url).json()
@@ -42,9 +46,9 @@ def results():
     description = weather_one.get("description")
     temp_k = response.get("main", {}).get("temp")
     if measurement == "celsius":
-        temp = int(temp_k) - 273.15
+        temp = str(int(temp_k) - 273.15) + "°C"
     elif measurement == "fahrenheit":
-        temp = ((int(temp_k) - 273.15) * 1.8) + 32
+        temp = str(((int(temp_k) - 273.15) * 1.8) + 32) + "°F"
     wind_speed = response.get("wind", {}).get("speed")
     icon = weather_one.get("icon")
 

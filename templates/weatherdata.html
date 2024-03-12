@@ -1,7 +1,49 @@
 {% extends "base.html" %}
 
-
 {% block content %}
+
+
+<div class="card" style = "width: 80%">
+  <div class="card-body">
+      <div class="row">
+            <div class="col">
+              {{ weather_dict.temp }}
+            </div>
+            <div class="col">
+              {{ weather_dict.description }}
+            </div>
+      </div>
+       <div class="row">
+            <div class="col">
+              Column
+            </div>
+      </div>
+       <div class="row">
+            <div class="col">
+                today
+              <img src ="static/01d@2x.png">
+                {{ weather_dict.temp }}
+            </div>
+            <div class="col">
+              Column
+            </div>
+            <div class="col">
+              Column
+            </div>
+            <div class="col">
+              Column
+            </div>
+            <div class="col">
+              Column
+            </div>
+            <div class="col">
+              Column
+            </div>
+      </div>
+  </div>
+</div>
+
+
 
 <h5>This is the location of the weather data:</h5>
 {{ weather_dict.location }}
@@ -15,5 +57,7 @@
 {{ weather_dict.temp }}
 <h5>This is the wind speed of the location in metres per second:</h5>
 {{ weather_dict.wind_speed }}
+
+
 
 {% endblock %}
