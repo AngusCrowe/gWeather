@@ -25,17 +25,32 @@ def results():
     measurement = request.form.get('measurement')
     if not form_city:
         url = "https://api.openweathermap.org/data/2.5/weather?lat=" + form_lat + "&lon=" + form_lon + "&appid=" + api_key
-
+        url2 = "https://api.openweathermap.org/data/2.5/forecast?lat=" + form_lat + "&lon="+ form_lon + "&appid=" + api_key
     else:
         url = "http://api.openweathermap.org/data/2.5/weather?q=" + form_city + "&APPID=" + api_key
-
-
-# use this link: https://api.openweathermap.org/data/2.5/forecast?lat=30.0444&lon=31.2357&appid=61e2ac5c5dec09d272ffdbfbfe7e27d2
-
+        url2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + form_city + "&appid=" + api_key
 
     print(url)
+    print(url2)
 
     response = requests.get(url).json()
+    response2 = requests.get(url2).json()
+
+    weatherinfo = response2.get("list")
+    datetime1 = response2.get("list")[0].get('dt')
+    print(datetime1)
+    datetime2 = response2.get("list")[1].get('dt')
+    print(datetime2)
+    datetime3 = response2.get("list")[2].get('dt')
+    print(datetime3)
+    datetime4 = response2.get("list")[3].get('dt')
+    print(datetime4)
+    datetime5 = response2.get("list")[4].get('dt')
+    print(datetime5)
+    datetime6 = response2.get("list")[5].get('dt')
+    print(datetime6)
+    datetime7 = response2.get("list")[6].get('dt')
+    print(datetime7)
 
     weather_list = response.get("weather", [{}])
     weather_one = weather_list[0]
