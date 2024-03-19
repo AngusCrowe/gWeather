@@ -38,48 +38,38 @@ def results():
 
     weatherinfo = response2.get("list")
 
+
+
+
+    main0 = response2.get("list")[0].get("main")
+    temp_value0 = main0['temp']
+    datetime0 = response2.get("list")[0].get('dt_txt')
+
     main1 = response2.get("list")[1].get("main")
     temp_value1 = main1['temp']
+    datetime1 = response2.get("list")[1].get('dt_txt')
+
     main2 = response2.get("list")[2].get("main")
     temp_value2 = main2['temp']
+    datetime2 = response2.get("list")[2].get('dt_txt')
+
     main3 = response2.get("list")[3].get("main")
     temp_value3 = main3['temp']
+    datetime3 = response2.get("list")[3].get('dt_txt')
+
     main4 = response2.get("list")[4].get("main")
     temp_value4 = main4['temp']
+    datetime4 = response2.get("list")[4].get('dt_txt')
+
     main5 = response2.get("list")[5].get("main")
     temp_value5 = main5['temp']
-    main6 = response2.get("list")[6].get("main")
-    temp_value6 = main6['temp']
-    main7 = response2.get("list")[7].get("main")
-    temp_value7 = main7['temp']
-    main8 = response2.get("list")[8].get("main")
-    temp_value8 = main8['temp']
-    main9 = response2.get("list")[9].get("main")
-    temp_value9 = main9['temp']
+    datetime5 = response2.get("list")[5].get('dt_txt')
 
+    temperatures = [temp_value0, temp_value1, temp_value2, temp_value3, temp_value4, temp_value5]
+    datetimes = [datetime0, datetime1, datetime2, datetime3, datetime4, datetime5]
 
-    # datetime2 = response2.get("list")[1].get('dt')
-    # print(datetime2)
-    # datetime3 = response2.get("list")[2].get('dt')
-    # print(datetime3)
-    # datetime4 = response2.get("list")[3].get('dt')
-    # print(datetime4)
-    # datetime5 = response2.get("list")[4].get('dt')
-    # print(datetime5)
-    # datetime6 = response2.get("list")[5].get('dt')
-    # print(datetime6)
-    # datetime7 = response2.get("list")[6].get('dt')
-    # print(datetime7)
-    # datetime8 = response2.get("list")[7].get('dt')
-    # print(datetime8)
-    # datetime9 = response2.get("list")[8].get('dt')
-    # print(datetime9)
-
-    x_time2 = [0, 3, 6, 9, 12, 15, 18, 21]
-    y_temp2 = [temp_value1, temp_value2, temp_value3, temp_value4, temp_value5, temp_value6, temp_value7, temp_value8]
-
-    plt.plot(x_time2, y_temp2)
-    plt.savefig("weather_chart")
+    print(temperatures)
+    print(datetimes)
 
     weather_list = response.get("weather", [{}])
     weather_one = weather_list[0]
@@ -90,9 +80,11 @@ def results():
     description = weather_one.get("description")
     temp_k = response.get("main", {}).get("temp")
     if measurement == "celsius":
-        temp = str(int(temp_k) - 273.15) + "°C"
+        rounded_temp = round(int(temp_k) - 273.15)
+        temp = str(rounded_temp) + "°C"
     elif measurement == "fahrenheit":
-        temp = str(((int(temp_k) - 273.15) * 1.8) + 32) + "°F"
+        rounded_temp = round((int(temp_k) - 273.15) * 1.8 + 32)
+        temp = str(rounded_temp) + "°F"
     wind_speed = response.get("wind", {}).get("speed")
     icon = weather_one.get("icon")
 
