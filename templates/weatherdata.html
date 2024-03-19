@@ -7,7 +7,12 @@
   <div class="card-body">
       <div class="row">
             <div class="col">
-              {{ weather_dict.temp }}
+              <img src= "{{ weather_dict.icon_link_current }}" alt="Weather Icon">
+              <span style="font-size: larger;">{{ weather_dict.temp }}</span>
+            </div>
+          <div class="col">
+              Humidity: {{ weather_dict.humidity }}% <br>
+              Wind: {{ weather_dict.wind_speed }}km/h
             </div>
             <div class="col">
               Weather <br>

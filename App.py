@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from datetime import datetime
 import requests
+
 from matplotlib import pyplot as plt
 
 app = Flask(__name__, template_folder='templates')
@@ -85,8 +86,11 @@ def results():
     elif measurement == "fahrenheit":
         rounded_temp = round((int(temp_k) - 273.15) * 1.8 + 32)
         temp = str(rounded_temp) + "°F"
-    wind_speed = response.get("wind", {}).get("speed")
+    wind_speed_metres = response.get("wind", {}).get("speed")
+    wind_speed = round((int(wind_speed_metres) * 3.6))
     icon = weather_one.get("icon")
+    icon_link_current = "https://openweathermap.org/img/wn/" + icon + "@2x.png"
+    humidity = response.get("main", {}).get("humidity")
 
     weather_dict = {
         "location": location,
@@ -95,7 +99,9 @@ def results():
         "description": description,
         "temp": temp,
         "wind_speed": wind_speed,
-        "icon": icon
+        "icon": icon,
+        "icon_link_current": icon_link_current,
+        "humidity": humidity
     }
 
     return render_template('weatherdata.html', weather_dict=weather_dict, response=response)
