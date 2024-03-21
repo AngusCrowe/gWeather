@@ -27,12 +27,15 @@ def results():
     if not form_city:
         url = "https://api.openweathermap.org/data/2.5/weather?lat=" + form_lat + "&lon=" + form_lon + "&appid=" + api_key
         url2 = "https://api.openweathermap.org/data/2.5/forecast?lat=" + form_lat + "&lon="+ form_lon + "&appid=" + api_key
+        url3 = "https://api.openweathermap.org/data/3.0/onecall?lat=" + form_lat + "&lon=" + form_lon + "&exclude=current,minutely,hourly,alerts&appid=" + api_key
     else:
         url = "http://api.openweathermap.org/data/2.5/weather?q=" + form_city + "&APPID=" + api_key
         url2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + form_city + "&appid=" + api_key
+        url3 = "https://api.openweathermap.org/data/3.0/onecall?q=" + form_city + "&exclude=current,minutely,hourly,alerts&appid=" + api_key
 
     print(url)
     print(url2)
+    print(url3)
 
     response = requests.get(url).json()
     response2 = requests.get(url2).json()
