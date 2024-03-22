@@ -123,38 +123,38 @@ def results():
     if measurement == "celsius":
         rounded_temp = round(int(temp_k) - 273.15)
         temp = str(rounded_temp) + "°C"
-        min0 = round(int(k_min_temp0) - 273.15)
-        min1 = round(int(k_min_temp1) - 273.15)
-        min2 = round(int(k_min_temp2) - 273.15)
-        min3 = round(int(k_min_temp3) - 273.15)
-        min4 = round(int(k_min_temp4) - 273.15)
-        min5 = round(int(k_min_temp5) - 273.15)
-        min6 = round(int(k_min_temp6) - 273.15)
-        max0 = round(int(k_max_temp0) - 273.15)
-        max1 = round(int(k_max_temp1) - 273.15)
-        max2 = round(int(k_max_temp2) - 273.15)
-        max3 = round(int(k_max_temp3) - 273.15)
-        max4 = round(int(k_max_temp4) - 273.15)
-        max5 = round(int(k_max_temp5) - 273.15)
-        max6 = round(int(k_max_temp6) - 273.15)
+        min0 = str(round(int(k_min_temp0) - 273.15)) + "°C"
+        min1 = str(round(int(k_min_temp1) - 273.15)) + "°C"
+        min2 = str(round(int(k_min_temp2) - 273.15)) + "°C"
+        min3 = str(round(int(k_min_temp3) - 273.15)) + "°C"
+        min4 = str(round(int(k_min_temp4) - 273.15)) + "°C"
+        min5 = str(round(int(k_min_temp5) - 273.15)) + "°C"
+        min6 = str(round(int(k_min_temp6) - 273.15)) + "°C"
+        max0 = str(round(int(k_max_temp0) - 273.15)) + "°C"
+        max1 = str(round(int(k_max_temp1) - 273.15)) + "°C"
+        max2 = str(round(int(k_max_temp2) - 273.15)) + "°C"
+        max3 = str(round(int(k_max_temp3) - 273.15)) + "°C"
+        max4 = str(round(int(k_max_temp4) - 273.15)) + "°C"
+        max5 = str(round(int(k_max_temp5) - 273.15)) + "°C"
+        max6 = str(round(int(k_max_temp6) - 273.15)) + "°C"
 
     elif measurement == "fahrenheit":
         rounded_temp = round((int(temp_k) - 273.15) * 1.8 + 32)
         temp = str(rounded_temp) + "°F"
-        min0 = round((int(k_min_temp0) - 273.15) * 1.8 + 32)
-        min1 = round((int(k_min_temp1) - 273.15) * 1.8 + 32)
-        min2 = round((int(k_min_temp2) - 273.15) * 1.8 + 32)
-        min3 = round((int(k_min_temp3) - 273.15) * 1.8 + 32)
-        min4 = round((int(k_min_temp4) - 273.15) * 1.8 + 32)
-        min5 = round((int(k_min_temp5) - 273.15) * 1.8 + 32)
-        min6 = round((int(k_min_temp6) - 273.15) * 1.8 + 32)
-        max0 = round((int(k_max_temp0) - 273.15) * 1.8 + 32)
-        max1 = round((int(k_max_temp1) - 273.15) * 1.8 + 32)
-        max2 = round((int(k_max_temp2) - 273.15) * 1.8 + 32)
-        max3 = round((int(k_max_temp3) - 273.15) * 1.8 + 32)
-        max4 = round((int(k_max_temp4) - 273.15) * 1.8 + 32)
-        max5 = round((int(k_max_temp5) - 273.15) * 1.8 + 32)
-        max6 = round((int(k_max_temp6) - 273.15) * 1.8 + 32)
+        min0 = str(round((int(k_min_temp0) - 273.15) * 1.8 + 32)) + "°F"
+        min1 = str(round((int(k_min_temp1) - 273.15) * 1.8 + 32)) + "°F"
+        min2 = str(round((int(k_min_temp2) - 273.15) * 1.8 + 32)) + "°F"
+        min3 = str(round((int(k_min_temp3) - 273.15) * 1.8 + 32)) + "°F"
+        min4 = str(round((int(k_min_temp4) - 273.15) * 1.8 + 32)) + "°F"
+        min5 = str(round((int(k_min_temp5) - 273.15) * 1.8 + 32)) + "°F"
+        min6 = str(round((int(k_min_temp6) - 273.15) * 1.8 + 32)) + "°F"
+        max0 = str(round((int(k_max_temp0) - 273.15) * 1.8 + 32)) + "°F"
+        max1 = str(round((int(k_max_temp1) - 273.15) * 1.8 + 32)) + "°F"
+        max2 = str(round((int(k_max_temp2) - 273.15) * 1.8 + 32)) + "°F"
+        max3 = str(round((int(k_max_temp3) - 273.15) * 1.8 + 32)) + "°F"
+        max4 = str(round((int(k_max_temp4) - 273.15) * 1.8 + 32)) + "°F"
+        max5 = str(round((int(k_max_temp5) - 273.15) * 1.8 + 32)) + "°F"
+        max6 = str(round((int(k_max_temp6) - 273.15) * 1.8 + 32)) + "°F"
 
     temps_dict = {
         "min0": min0,
@@ -172,8 +172,6 @@ def results():
         "max5": max5,
         "max6": max6,
     }
-
-    print(temps_dict)
 
     icons_dict = {
         "icon0": icon0,
