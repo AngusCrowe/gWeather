@@ -27,23 +27,32 @@ def results():
     if not form_city:
         url = "https://api.openweathermap.org/data/2.5/weather?lat=" + form_lat + "&lon=" + form_lon + "&appid=" + api_key
         url2 = "https://api.openweathermap.org/data/2.5/forecast?lat=" + form_lat + "&lon="+ form_lon + "&appid=" + api_key
-        url3 = "https://api.openweathermap.org/data/3.0/onecall?lat=" + form_lat + "&lon=" + form_lon + "&exclude=current,minutely,hourly,alerts&appid=" + api_key
     else:
         url = "http://api.openweathermap.org/data/2.5/weather?q=" + form_city + "&APPID=" + api_key
         url2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + form_city + "&appid=" + api_key
-        url3 = "https://api.openweathermap.org/data/3.0/onecall?q=" + form_city + "&exclude=current,minutely,hourly,alerts&appid=" + api_key
 
     print(url)
     print(url2)
-    print(url3)
 
     response = requests.get(url).json()
     response2 = requests.get(url2).json()
 
     weatherinfo = response2.get("list")
 
+    latitude_value = response.get("coord", {}).get("lat")
+    longitude_value = response.get("coord", {}).get("lon")
+    url3 = "https://api.openweathermap.org/data/3.0/onecall?lat=" + str(latitude_value) + "&lon=" + str(longitude_value) + "&exclude=current,minutely,hourly,alerts&appid=" + api_key
+    print(url3)
 
+    response3 = requests.get(url3).json()
 
+    icon01 = response3.get("daily")[0].get("weather")[0].get("icon")
+    icon11 = response3.get("daily")[1].get("weather")[0].get("icon")
+    icon21 = response3.get("daily")[2].get("weather")[0].get("icon")
+    icon31 = response3.get("daily")[3].get("weather")[0].get("icon")
+    icon41 = response3.get("daily")[4].get("weather")[0].get("icon")
+    icon51 = response3.get("daily")[5].get("weather")[0].get("icon")
+    icon61 = response3.get("daily")[6].get("weather")[0].get("icon")
 
     main0 = response2.get("list")[0].get("main")
     temp_value0 = main0['temp']
@@ -72,9 +81,6 @@ def results():
     temperatures = [temp_value0, temp_value1, temp_value2, temp_value3, temp_value4, temp_value5]
     datetimes = [datetime0, datetime1, datetime2, datetime3, datetime4, datetime5]
 
-    print(temperatures)
-    print(datetimes)
-
     weather_list = response.get("weather", [{}])
     weather_one = weather_list[0]
     location = response.get("name")
@@ -93,21 +99,35 @@ def results():
     wind_speed = round((int(wind_speed_metres) * 3.6))
     icon = weather_one.get("icon")
     icon_link_current = "https://openweathermap.org/img/wn/" + icon + "@2x.png"
+    icon0 = "https://openweathermap.org/img/wn/" + icon01 + "@2x.png"
+    icon1 = "https://openweathermap.org/img/wn/" + icon11 + "@2x.png"
+    icon2 = "https://openweathermap.org/img/wn/" + icon21 + "@2x.png"
+    icon3 = "https://openweathermap.org/img/wn/" + icon31 + "@2x.png"
+    icon4 = "https://openweathermap.org/img/wn/" + icon41 + "@2x.png"
+    icon5 = "https://openweathermap.org/img/wn/" + icon51 + "@2x.png"
+    icon6 = "https://openweathermap.org/img/wn/" + icon61 + "@2x.png"
     humidity = response.get("main", {}).get("humidity")
+
+    icons_dict = {
+        "icon0": icon0,
+        "icon1": icon1,
+        "icon2": icon2,
+        "icon3": icon3,
+        "icon4": icon4,
+        "icon5": icon5,
+        "icon6": icon6
+    }
 
     weather_dict = {
         "location": location,
-        "timezone": timezone,
-        "timestamp_local": timestamp_local,
         "description": description,
         "temp": temp,
         "wind_speed": wind_speed,
-        "icon": icon,
         "icon_link_current": icon_link_current,
         "humidity": humidity
     }
 
-    return render_template('weatherdata.html', weather_dict=weather_dict, response=response)
+    return render_template('weatherdata.html', weather_dict=weather_dict, response=response, icons_dict=icons_dict)
 
 if __name__ == '__main__':
     app.run(debug=True)
