@@ -2,7 +2,7 @@
 
 {% block content %}
 
-
+<h3>This is weather data for: {{ weather_dict.location }}</h3>
 <div class="card" style = "width: 80%">
   <div class="card-body">
       <div class="row">
@@ -27,25 +27,39 @@
       </div>
        <div class="row">
             <div class="col">
-              <img src= "{{ icons_dict.icon0 }}">
+              <img src= "{{ icons_dict.icon0 }}"> <br>
+              Max: {{ temps_dict.max0 }} <br>
+              Min: {{ temps_dict.min0 }}
             </div>
             <div class="col">
-              <img src= "{{ icons_dict.icon1 }}">
+              <img src= "{{ icons_dict.icon1 }}"> <br>
+              Day: {{ temps_dict.max1 }} <br>
+              Night: {{ temps_dict.min1 }}
             </div>
             <div class="col">
-              <img src= "{{ icons_dict.icon2 }}">
+              <img src= "{{ icons_dict.icon2 }}"> <br>
+              Day: {{ temps_dict.max2 }} <br>
+              Night: {{ temps_dict.min2 }}
             </div>
             <div class="col">
-              <img src= "{{ icons_dict.icon3 }}">
+              <img src= "{{ icons_dict.icon3 }}"> <br>
+              Day: {{ temps_dict.max3 }} <br>
+              Night: {{ temps_dict.min3 }}
             </div>
             <div class="col">
-              <img src= "{{ icons_dict.icon4 }}">
+              <img src= "{{ icons_dict.icon4 }}"> <br>
+              Max: {{ temps_dict.max4 }} <br>
+              Min: {{ temps_dict.min4 }}
             </div>
             <div class="col">
-              <img src= "{{ icons_dict.icon5 }}">
+              <img src= "{{ icons_dict.icon5 }}"> <br>
+              Day: {{ temps_dict.max5 }} <br>
+              Night: {{ temps_dict.min5 }}
             </div>
              <div class="col">
-              <img src= "{{ icons_dict.icon6 }}">
+              <img src= "{{ icons_dict.icon6 }}"> <br>
+               Day: {{ temps_dict.max6 }} <br>
+               Night: {{ temps_dict.min6 }}
             </div>
       </div>
   </div>
