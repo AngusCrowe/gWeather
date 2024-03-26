@@ -75,6 +75,8 @@ def results():
     k_max_temp6 = response3.get("daily")[6].get("temp").get("day")
     k_min_temp6 = response3.get("daily")[6].get("temp").get("night")
 
+    local_timezone = response3.get("timezone")
+
     # main0 = response2.get("list")[0].get("main")
     # temp_value0 = main0['temp']
     # datetime0 = response2.get("list")[0].get('dt_txt')
@@ -200,7 +202,7 @@ def results():
     day_of_week = datetime_object551.weekday()
 
     datetime_object_utc = datetime.utcfromtimestamp(timestamp1)
-    adelaide_timezone = pytz.timezone('Australia/Adelaide')
+    adelaide_timezone = pytz.timezone(local_timezone)
     datetime_object_adelaide = pytz.utc.localize(datetime_object_utc).astimezone(adelaide_timezone)
     time_string = datetime_object_adelaide.strftime("%H:%M")
     print("Local Time in Adelaide:", time_string)
