@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
-from datetime import datetime
+from datetime import datetime, timedelta
 import requests
+import pytz
 
 from matplotlib import pyplot as plt
 
@@ -104,7 +105,7 @@ def results():
     weather_list = response.get("weather", [{}])
     weather_one = weather_list[0]
     location = response.get("name")
-    timestamp = response.get("dt")
+    timestamp1 = response.get("dt")
     description = weather_one.get("description")
     temp_k = response.get("main", {}).get("temp")
     wind_speed_metres = response.get("wind", {}).get("speed")
@@ -192,7 +193,38 @@ def results():
         "humidity": humidity
     }
 
-    return render_template('weatherdata.html', weather_dict=weather_dict, response=response, icons_dict=icons_dict, temps_dict=temps_dict)
+
+    days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+    datetime_object551 = datetime.utcfromtimestamp(timestamp1)
+    day_of_week = datetime_object551.weekday()
+
+    datetime_object_utc = datetime.utcfromtimestamp(timestamp1)
+    adelaide_timezone = pytz.timezone('Australia/Adelaide')
+    datetime_object_adelaide = pytz.utc.localize(datetime_object_utc).astimezone(adelaide_timezone)
+    time_string = datetime_object_adelaide.strftime("%H:%M")
+    print("Local Time in Adelaide:", time_string)
+
+    day1 = days_of_week[day_of_week]
+    day2 = days_of_week[day_of_week + 1]
+    day3 = days_of_week[day_of_week + 2]
+    day4 = days_of_week[day_of_week + 3]
+    day5 = days_of_week[day_of_week + 4]
+    day6 = days_of_week[day_of_week + 5]
+    day7 = days_of_week[day_of_week + 6]
+
+    day_dict = {
+        "time": time_string,
+        "day1": day1,
+        "day2": day2,
+        "day3": day3,
+        "day4": day4,
+        "day5": day5,
+        "day6": day6,
+        "day7": day7
+    }
+
+    return render_template('weatherdata.html', weather_dict=weather_dict, response=response, icons_dict=icons_dict, temps_dict=temps_dict, day_dict=day_dict)
 
 if __name__ == '__main__':
     app.run(debug=True)
